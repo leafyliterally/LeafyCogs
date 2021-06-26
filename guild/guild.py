@@ -2,7 +2,7 @@ import discord
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import humanize_number
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 __author__ = "Leafy"
 
 class Guild(commands.Cog):
@@ -96,7 +96,11 @@ class Guild(commands.Cog):
 
         min_hp = dragon_health[level] * ((percentage - 1) / 100)
         max_hp = dragon_health[level] * percentage / 100
-        description = f"<:success:785047433716957194> Lv. {level} Dragon at {percentage}% varies between **{humanize_number(min_hp)}** and **{humanize_number(max_hp)}**"
+        description = None
+        if percentage == 100:
+            description = f"<:success:785047433716957194> Lv. {level} Dragon at {percentage}% is **{humanize_number(max_hp)}**"
+        else:
+            description = f"<:success:785047433716957194> Lv. {level} Dragon at {percentage}% varies between **{humanize_number(min_hp)}** and **{humanize_number(max_hp)}**"
         embed = discord.Embed(description=description, color=4437377)
         return await ctx.send(embed=embed)
 
