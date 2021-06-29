@@ -2,7 +2,7 @@ import discord
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import humanize_number
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Leafy"
 
 class Guild(commands.Cog):
@@ -17,10 +17,10 @@ class Guild(commands.Cog):
         """
         Count Dragon Health Remaining.
 
-        Dragon Level varies from 1 to 60.
+        Dragon Level varies from 1 to 61.
         Percentage varies from 1 to 100.
         """
-        if (level <= 0 or level > 60):
+        if (level <= 0 or level > 61):
             description = "<:error:785047391257624596> Level capped between 1 and 60"
             embed = discord.Embed(description=description, color=15747399)
             await ctx.send(embed=embed)
@@ -91,7 +91,8 @@ class Guild(commands.Cog):
             57: 81854000,
             58: 84328000,
             59: 86876000,
-            60: 89502000
+            60: 89502000,
+            61: 92206000
         }
 
         min_hp = dragon_health[level] * ((percentage - 1) / 100)
