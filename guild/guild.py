@@ -18,9 +18,9 @@ class Guild(commands.Cog):
         """
         Count Dragon Health Remaining.
 
-        Dragon Level varies from **1** to **{}**.
+        Dragon Level varies from **1** to **61**.
         Percentage varies from **1** to **100**.
-        """.format(max_drag)
+        """
         if (level <= 0 or level > max_drag):
             description = f"<:error:785047391257624596> Level capped between **1** and **{max_drag}**"
             embed = discord.Embed(description=description, color=15747399)
