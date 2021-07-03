@@ -4,8 +4,9 @@ from redbot.core.utils.chat_formatting import humanize_number
 
 __version__ = "1.0.2"
 __author__ = "Leafy"
+max_drag = 61
 
-class Guild(commands.Cog):
+class Guild(commands.Cog):    
     """
     Cookie Run Kingdom Guild Related Command
     """
@@ -14,20 +15,20 @@ class Guild(commands.Cog):
 
     @commands.command()
     async def drag(self, ctx, level: int, percentage: int):
-        """
+        f"""
         Count Dragon Health Remaining.
 
-        Dragon Level varies from 1 to 61.
-        Percentage varies from 1 to 100.
+        Dragon Level varies from **1** to **{max_drag}**.
+        Percentage varies from **1** to **100**.
         """
-        if (level <= 0 or level > 61):
-            description = "<:error:785047391257624596> Level capped between 1 and 60"
+        if (level <= 0 or level > max_drag):
+            description = f"<:error:785047391257624596> Level capped between **1** and **{max_drag}**"
             embed = discord.Embed(description=description, color=15747399)
             await ctx.send(embed=embed)
             return
 
         if (percentage <= 0 or percentage > 100):
-            description = "<:error:785047391257624596> Percentage capped between 1 and 100"
+            description = "<:error:785047391257624596> Percentage capped between **1** and **100**"
             embed = discord.Embed(description=description, color=15747399)
             await ctx.send(embed=embed)
 
