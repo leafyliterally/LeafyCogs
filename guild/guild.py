@@ -101,7 +101,7 @@ class Guild(commands.Cog):
         if percentage == 100:
             description = f"<:success:785047433716957194> Lv. {level} Dragon at {percentage}% is **{humanize_number(max_hp)}**"
         elif percentage == 99:
-            description = f"<:success:785047433716957194> Lv. {level} Dragon at {percentage}% varies between **{humanize_number(min_hp)}** and **{dragon_health[level] - 1}**"
+            description = f"<:success:785047433716957194> Lv. {level} Dragon at {percentage}% varies between **{humanize_number(min_hp)}** and **{humanize_number(dragon_health[level] - 1)}**"
         else:
             description = f"<:success:785047433716957194> Lv. {level} Dragon at {percentage}% varies between **{humanize_number(min_hp)}** and **{humanize_number(max_hp)}**"
         embed = discord.Embed(description=description, color=4437377)
