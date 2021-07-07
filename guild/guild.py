@@ -109,7 +109,7 @@ class Guild(commands.Cog):
         return await ctx.send(embed=embed)
 
     @commands.command()
-    def calculateKey(self, ctx, start: int, end: int):
+    async def tkey(self, ctx, start: int, end: int):
         """
         Count Cake Tower Key Needed from level to level.
 
