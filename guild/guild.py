@@ -108,3 +108,62 @@ class Guild(commands.Cog):
         embed = discord.Embed(description=description, color=4437377)
         return await ctx.send(embed=embed)
 
+    @commands.command()
+    def calculateKey(self, ctx, start: int, end: int):
+        """
+        Count Cake Tower Key Needed from level to level.
+
+        Cake Tower Level varies from **1** to **150**.
+        2 Chests can be found at Tray 11, 26, 41, 56, 71, 86, 101, 116, 131, 146
+        An additional level can be found at Tray 8, 23, 38, 53, 68, 83, 98, 113, 128, 143
+        """
+        if (start <= 0 or start > 150 or end <= 0 or end > 150):
+            description = "<:error:785047391257624596> Tray Level capped between **1** and **150**"
+            embed = discord.Embed(description=description, color=15747399)
+            await ctx.send(embed=embed)
+            return
+        
+        chest = [11, 26, 41, 56, 71, 86, 101, 116, 131, 146]
+        extra = [8, 23, 38, 53, 68, 83, 98, 113, 128, 143]
+
+        key_min = 0
+        key_max = 0
+
+        for key in chest:
+            if start <= key <= end:
+                if key < 50:
+                    key_min += 6
+                    key_max += 24
+                elif key < 100:
+                    key_min += 8
+                    key_max += 32
+                else:
+                    key_min += 10
+                    key_max += 40
+
+        for key in extra:
+            if start <= key <= end:
+                if key < 50:
+                    key_max += 6
+                elif key < 100:
+                    key_max += 8
+                else:
+                    key_max += 10
+
+        for key in range(start, end + 1):
+            if key < 50:
+                key_min += 6
+                key_max += 6
+            elif key < 100:
+                key_min += 8
+                key_max += 8
+            else:
+                key_min += 10
+                key_max += 10
+
+        description = f"You need **{humanize_number(key_min)} keys** from **Tray {start}** to **Tray {end}** assuming you choose all left chests.\n" + 
+            f"Assuming you want to unlock all trays available, you will need **{humanize_number(key_max)} keys**!"
+        embed = discord.Embed(description=description, color=4437377)
+        return await ctx.send(embed=embed)
+        
+        
