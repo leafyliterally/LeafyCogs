@@ -111,7 +111,7 @@ class Guild(commands.Cog):
     @commands.command()
     async def tkey(self, ctx, start: int, end: int):
         """
-        Count Cake Tower Key Needed from level to level.
+        Count Cake Tower Keys Needed from level to level.
 
         Cake Tower Level varies from **1** to **150**.
         
@@ -119,6 +119,9 @@ class Guild(commands.Cog):
         
         2 chests can be found at Tray 11, 26, 41, 56, 71, 86, 101, 116, 131, 146, each cost twice (left) or thrice (right) depending on the tray group (6, 8, 10 keys).
         An additional level can be found at Tray 8, 23, 38, 53, 68, 83, 98, 113, 128, 143.
+        
+        The bot will calculate minimum keys required to progress at certain tray (only counts one of the 2-stage tray and left chests).
+        The bot will also calculate maximum keys required to unlock every tray (counts additional level and all chests available).
         """
         if (start <= 0 or start > 150 or end <= 0 or end > 150):
             description = "<:error:785047391257624596> Tray Level capped between **1** and **150**"
