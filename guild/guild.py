@@ -114,8 +114,11 @@ class Guild(commands.Cog):
         Count Cake Tower Key Needed from level to level.
 
         Cake Tower Level varies from **1** to **150**.
-        2 Chests can be found at Tray 11, 26, 41, 56, 71, 86, 101, 116, 131, 146
-        An additional level can be found at Tray 8, 23, 38, 53, 68, 83, 98, 113, 128, 143
+        
+        Tray 1-49 cost 6 keys, tray 50-99 cost 8 keys, tray 100-150 cost 10 keys.
+        
+        2 chests can be found at Tray 11, 26, 41, 56, 71, 86, 101, 116, 131, 146, each cost twice (left) or thrice (right) depending on the tray group (6, 8, 10 keys).
+        An additional level can be found at Tray 8, 23, 38, 53, 68, 83, 98, 113, 128, 143.
         """
         if (start <= 0 or start > 150 or end <= 0 or end > 150):
             description = "<:error:785047391257624596> Tray Level capped between **1** and **150**"
