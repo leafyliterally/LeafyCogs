@@ -161,8 +161,8 @@ class Guild(commands.Cog):
                 key_min += 10
                 key_max += 10
 
-        description = f"You need **{humanize_number(key_min)} keys** from **Tray {start}** to **Tray {end}** assuming you choose all left chests.\n"
-        description += f"Assuming you want to unlock all trays available, you will need **{humanize_number(key_max)} keys**!"
+        description = f"You need at least **{humanize_number(key_min)} keys** to progress from **Tray {start}** to **Tray {end}**.\n"
+        description += f"If you want to unlock all trays available, you will need **{humanize_number(key_max)} keys**!"
         embed = discord.Embed(description=description, color=4437377)
         return await ctx.send(embed=embed)
         
