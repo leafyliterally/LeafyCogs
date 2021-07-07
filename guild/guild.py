@@ -123,6 +123,11 @@ class Guild(commands.Cog):
             await ctx.send(embed=embed)
             return
         
+        if (start > end):
+            temp = start
+            start = end
+            end = temp
+        
         chest = [11, 26, 41, 56, 71, 86, 101, 116, 131, 146]
         extra = [8, 23, 38, 53, 68, 83, 98, 113, 128, 143]
 
