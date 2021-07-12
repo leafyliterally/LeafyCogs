@@ -278,7 +278,7 @@ class CRK(commands.Cog):
         if complete_max:
             description += f"You can also progress to **Tray 150** if you want to unlock all trays available!"
         elif left_only:
-            description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max} with left tray unlocked**!"
+            description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max} by completing the left tray**!"
         elif tray_max == start:
             description += f"You can't progress and still stuck at **Tray {start + 1}** if you want to unlock all available trays."
         else:
