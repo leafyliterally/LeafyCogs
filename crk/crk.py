@@ -2,7 +2,7 @@ import discord
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import humanize_number
 
-__version__ = "1.0.5"
+__version__ = "1.1.0"
 __author__ = "Leafy"
 max_drag = 61
 
@@ -216,9 +216,9 @@ class CRK(commands.Cog):
             check_tray = start + 1
 
             key_needed_min = 0
-            if key < 50:
+            if check_tray < 50:
                 key_needed_min = 6
-            elif key < 100:
+            elif check_tray < 100:
                 key_needed_min = 8
             else:
                 key_needed_min = 10
@@ -226,18 +226,18 @@ class CRK(commands.Cog):
             key_needed_max = key_needed_min
 
             if check_tray in extra:
-                if key < 50:
+                if check_tray < 50:
                     key_needed_max += 6
-                elif key < 100:
+                elif check_tray < 100:
                     key_needed_max += 8
                 else:
                     key_needed_max += 10
 
             if check_tray in chest:
-                if key < 50:
+                if check_tray < 50:
                     key_needed_min += 6
                     key_needed_max += 24
-                elif key < 100:
+                elif check_tray < 100:
                     key_needed_min += 8
                     key_needed_max += 32
                 else:
