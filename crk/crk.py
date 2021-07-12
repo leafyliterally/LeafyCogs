@@ -193,7 +193,7 @@ class CRK(commands.Cog):
         The bot will calculate minimum tray you can to progress (only counts one of the 2-stage tray and left chests).
         The bot will also calculate trays required if you decided unlock every tray (counts additional level and all chests available).
         """
-        if (start <= 0 or start > 150):
+        if start <= 0 or start > 150:
             description = "<:error:785047391257624596> Tray Level capped between **1** and **150**"
             embed = discord.Embed(description=description, color=15747399)
             await ctx.send(embed=embed)
@@ -212,10 +212,8 @@ class CRK(commands.Cog):
         complete_min = False
         complete_max = False
 
-        while(True):
-            check_tray = start + 1
-
-            key_needed_min = 0
+        check_tray = start + 1
+        while True:
             if check_tray < 50:
                 key_needed_min = 6
             elif check_tray < 100:
@@ -244,36 +242,36 @@ class CRK(commands.Cog):
                     key_needed_min += 10
                     key_needed_max += 40
 
-            if spare_max > key_needed_max:
+            if spare_max >= key_needed_max:
                 tray_max += 1
                 spare_max -= key_needed_max
-            elif spare_max > key_needed_min:
+            elif spare_max >= key_needed_min:
                 tray_max += 1
                 spare_max -= key_needed_min
                 left_only = True
 
-            if spare_min > key_needed_max:
+            if spare_min >= key_needed_max:
                 tray_min += 1
                 spare_min -= key_needed_min
             else:
                 break
 
-        if (tray_min >= 150):
+            check_tray += 1
+
+        if tray_min >= 150:
             complete_min = True
 
-        if (tray_max >= 150):
+        if tray_max >= 150:
             complete_max = True
 
-        description = None
-
-        if (complete_min):
+        if complete_min:
             description = f"You can complete **Tray 150** with this amount of keys, assuming you only choose left side of the tray.\n"
         else:
-            description = f"You can progress to **Tray {tray_min}** from **Tray {start}** assuming you only choose left side of the tray.\n"
+            description = f"You can progress to **Tray {tray_min}** from **Tray {start + 1}** assuming you only choose left side of the tray.\n"
 
-        if (complete_max):
+        if complete_max:
             description += f"You can also progress to **Tray 150** if you want to unlock all trays available!"
-        elif (left_only):
+        elif left_only:
             description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max} with left tray unlocked**!"
         else:
             description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max}**!"
