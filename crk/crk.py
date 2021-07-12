@@ -177,4 +177,105 @@ class CRK(commands.Cog):
         embed = discord.Embed(description=description, color=4437377)
         return await ctx.send(embed=embed)
         
+    
+    @commands.command()
+    async def ttray(self, ctx, spare: int, start: int):
+        """
+        Count Cake Tower Trays you can progress from a specific tray!
+
+        Cake Tower Level varies from **1** to **150**.
         
+        Tray 1-49 cost 6 keys, tray 50-99 cost 8 keys, tray 100-150 cost 10 keys.
+        
+        2 chests can be found at Tray 11, 26, 41, 56, 71, 86, 101, 116, 131, 146, each cost twice (left) or thrice (right) depending on the tray group (6, 8, 10 keys).
+        An additional level can be found at Tray 8, 23, 38, 53, 68, 83, 98, 113, 128, 143.
+        
+        The bot will calculate minimum tray you can to progress (only counts one of the 2-stage tray and left chests).
+        The bot will also calculate trays required if you decided unlock every tray (counts additional level and all chests available).
+        """
+        if (start <= 0 or start > 150):
+            description = "<:error:785047391257624596> Tray Level capped between **1** and **150**"
+            embed = discord.Embed(description=description, color=15747399)
+            await ctx.send(embed=embed)
+            return
+        
+        chest = [11, 26, 41, 56, 71, 86, 101, 116, 131, 146]
+        extra = [8, 23, 38, 53, 68, 83, 98, 113, 128, 143]
+
+        start -= 1
+
+        tray_min = start
+        tray_max = start
+        spare_min = spare
+        spare_max = spare
+        left_only = False
+        complete_min = False
+        complete_max = False
+
+        while(True):
+            check_tray = start + 1
+
+            key_needed_min = 0
+            if key < 50:
+                key_needed_min = 6
+            elif key < 100:
+                key_needed_min = 8
+            else:
+                key_needed_min = 10
+
+            key_needed_max = key_needed_min
+
+            if check_tray in extra:
+                if key < 50:
+                    key_needed_max += 6
+                elif key < 100:
+                    key_needed_max += 8
+                else:
+                    key_needed_max += 10
+
+            if check_tray in chest:
+                if key < 50:
+                    key_needed_min += 6
+                    key_needed_max += 24
+                elif key < 100:
+                    key_needed_min += 8
+                    key_needed_max += 32
+                else:
+                    key_needed_min += 10
+                    key_needed_max += 40
+
+            if spare_max > key_needed_max:
+                tray_max += 1
+                spare_max -= key_needed_max
+            elif spare_max > key_needed_min:
+                tray_max += 1
+                spare_max -= key_needed_min
+                left_only = True
+
+            if spare_min > key_needed_max:
+                tray_min += 1
+                spare_min -= key_needed_min
+            else:
+                break
+
+        if (tray_min >= 150):
+            complete_min = True
+
+        if (tray_max >= 150):
+            complete_max = True
+
+        description = None
+
+        if (complete_min):
+            description = f"You can complete **Tray 150** with this amount of keys, assuming you only choose left side of the tray.\n"
+        else:
+            description = f"You can progress to **Tray {tray_min}** from **Tray {start}** assuming you only choose left side of the tray.\n"
+
+        if (complete_max):
+            description += f"You can also progress to **Tray 150** if you want to unlock all trays available!"
+        elif (left_only):
+            description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max} with left tray unlocked**!"
+        else:
+            description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max}**!"
+        embed = discord.Embed(description=description, color=4437377)
+        return await ctx.send(embed=embed)
