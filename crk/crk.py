@@ -266,6 +266,10 @@ class CRK(commands.Cog):
 
         if complete_min:
             description = f"You can complete **Tray 150** with this amount of keys, assuming you only choose left side of the tray.\n"
+        elif tray_min == start:
+            description = f"You can't progress any tray with this amount of keys!"
+            embed = discord.Embed(description=description, color=4437377)
+            return await ctx.send(embed=embed)
         else:
             description = f"You can progress to **Tray {tray_min}** from **Tray {start + 1}** assuming you only choose left side of the tray.\n"
 
@@ -273,6 +277,8 @@ class CRK(commands.Cog):
             description += f"You can also progress to **Tray 150** if you want to unlock all trays available!"
         elif left_only:
             description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max} with left tray unlocked**!"
+        elif tray_max == start:
+            description += f"You can't progress and still stuck at **Tray {start + 1}** if you want to unlock all available trays."
         else:
             description += f"If you want to unlock all trays available, you can progress up to **Tray {tray_max}**!"
         embed = discord.Embed(description=description, color=4437377)
