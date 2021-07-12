@@ -270,6 +270,8 @@ class CRK(commands.Cog):
             description = f"<:error:785047391257624596> You can't progress any tray with this amount of keys!"
             embed = discord.Embed(description=description, color=15747399)
             return await ctx.send(embed=embed)
+        elif tray_min == start + 1:
+            description = f"You can only complete **Tray {tray_min}** assuming you only choose left side of the tray.\n"
         else:
             description = f"You can progress to **Tray {tray_min}** from **Tray {start + 1}** assuming you only choose left side of the tray.\n"
 
