@@ -250,7 +250,7 @@ class CRK(commands.Cog):
                 spare_max -= key_needed_min
                 left_only = True
 
-            if spare_min >= key_needed_max:
+            if spare_min >= key_needed_min:
                 tray_min += 1
                 spare_min -= key_needed_min
             else:
