@@ -14,7 +14,7 @@ class CRK(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def drag(self, ctx, level: int, percentage: int):
+    async def drag(self, ctx, level: int, percentage: int = 100):
         """
         Count Dragon Health Remaining.
 
