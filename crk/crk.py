@@ -4,7 +4,7 @@ from redbot.core.utils.chat_formatting import humanize_number
 
 __version__ = "1.1.0"
 __author__ = "Leafy"
-max_drag = 61
+max_drag = 66
 
 class CRK(commands.Cog):    
     """
@@ -93,7 +93,12 @@ class CRK(commands.Cog):
             58: 84328000,
             59: 86876000,
             60: 89502000,
-            61: 92206000
+            61: 92206000,
+            62: 94994000,
+            63: 97864000,
+            64: 100822000,
+            65: 103870000,
+            66: 107010000
         }
 
         min_hp = dragon_health[level] * ((percentage - 1) / 100)
