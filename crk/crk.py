@@ -2,7 +2,7 @@ import discord
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import humanize_number
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 __author__ = "Leafy"
 max_drag = 66
 
@@ -18,7 +18,7 @@ class CRK(commands.Cog):
         """
         Count Dragon Health Remaining.
 
-        Dragon Level varies from **1** to **61**.
+        Dragon Level varies from **1** to **66**.
         Percentage varies from **1** to **100**.
         """
         if (level <= 0 or level > max_drag):
