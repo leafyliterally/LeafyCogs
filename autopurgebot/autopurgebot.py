@@ -12,7 +12,7 @@ class AutoPurgeBot(commands.Cog):
 
     @commands.guild_only()
     @commands.admin_or_permissions(manage_guild=True)
-    @commands.group()
+    @commands.group(aliases=["apb"])
     async def autopurgebot(self, ctx: commands.Context):
         """Configure the spam-bot trap channel."""
 
