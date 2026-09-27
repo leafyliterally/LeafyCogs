@@ -1,5 +1,5 @@
 import discord
-from redbot.core import commands, Config
+from redbot.core import commands, modlog, Config
 
 
 class AutoPurgeBot(commands.Cog):
@@ -155,3 +155,8 @@ class AutoPurgeBot(commands.Cog):
             await guild.unban(member, reason="Automatic softban cleanup")
         except discord.HTTPException:
             pass
+
+        await modlog.create_case(
+            self.bot, guild, message.created_at, "softban", member, guild.me, reason,
+            until=None, channel=message.channel,
+        )
