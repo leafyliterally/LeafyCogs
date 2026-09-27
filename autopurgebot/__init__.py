@@ -8,4 +8,5 @@ __red_end_user_data_statement__ = (
 
 
 async def setup(bot):
-    await bot.add_cog(AutoPurgeBot(bot))
+    cog = AutoPurgeBot(bot)
+    bot.add_cog(cog)

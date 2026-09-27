@@ -143,7 +143,7 @@ class AutoPurgeBot(commands.Cog):
             pass  # DMs closed — proceed anyway
 
         try:
-            await guild.ban(member, reason=reason, delete_message_seconds=86400)
+            await guild.ban(member, reason=reason, delete_message_days=1)
         except discord.HTTPException:
             try:
                 await message.add_reaction("❌")

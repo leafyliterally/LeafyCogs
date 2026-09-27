@@ -3,7 +3,7 @@
     "short": "Spam-bot trap channel with auto-softban",
     "description": "Designates one channel per server as a spam-bot trap. Any human who posts there is DMed an explanation, banned with a 1-day message purge, then immediately unbanned.",
     "type": "COG",
-    "min_bot_version": "3.5.0",
+    "min_bot_version": "3.4.0",
     "permissions": ["ban_members", "add_reactions"],
     "end_user_data_statement": "This cog does not persistently store end-user data. It stores per-guild configuration only (a channel ID, an enabled flag, and the ID of its own warning message)."
 }
