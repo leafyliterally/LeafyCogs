@@ -129,7 +129,7 @@ class AutoPurgeBot(commands.Cog):
     async def _softban(self, message: discord.Message):
         guild = message.guild
         member = message.author
-        reason = f"Posted in the spam-trap channel #{message.channel.name} — automatic softban."
+        reason = f"Posted in the spam-trap channel — automatic softban."
 
         try:
             await member.send(
