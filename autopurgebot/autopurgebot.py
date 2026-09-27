@@ -52,7 +52,7 @@ class AutoPurgeBot(commands.Cog):
                 title="DO NOT SEND MESSAGES IN THIS CHANNEL",
                 description=(
                     "This channel is used to catch spam bots. Any messages sent here "
-                    "will result in _**a softban**_."
+                    "will result in __**a softban**__."
                 ),
                 color=discord.Color.red(),
             )
