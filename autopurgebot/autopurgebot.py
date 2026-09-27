@@ -10,7 +10,7 @@ class WarningLayout(discord.ui.LayoutView):
             discord.ui.TextDisplay(
                 "# DO NOT SEND MESSAGES IN THIS CHANNEL\n"
                 "This channel is used to catch spam bots. Any messages sent here "
-                "will result in _**a softban**_."
+                "will result in __**a softban**__."
             ),
             accessory=discord.ui.Thumbnail(
                 "https://cdn.discordapp.com/emojis/487399523392684043.png"
