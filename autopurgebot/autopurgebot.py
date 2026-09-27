@@ -2,6 +2,27 @@ import discord
 from redbot.core import commands, modlog, Config
 
 
+class WarningLayout(discord.ui.LayoutView):
+    """Components V2 layout for the spam-trap channel's standing warning message."""
+
+    container = discord.ui.Container(
+        discord.ui.Section(
+            discord.ui.TextDisplay(
+                "# DO NOT SEND MESSAGES IN THIS CHANNEL\n"
+                "This channel is used to catch spam bots. Any messages sent here "
+                "will result in a softban."
+            ),
+            accessory=discord.ui.Thumbnail(
+                "https://cdn.discordapp.com/emojis/487399523392684043.png"
+            ),
+        ),
+        accent_colour=discord.Color.red(),
+    )
+
+    def __init__(self):
+        super().__init__(timeout=None)
+
+
 class AutoPurgeBot(commands.Cog):
     """Traps spam bots in a designated channel and auto-softbans anyone who posts there."""
 
@@ -48,17 +69,8 @@ class AutoPurgeBot(commands.Cog):
                 await ctx.send("The configured channel no longer exists. Set a new one first.")
                 return
 
-            embed = discord.Embed(
-                title="DO NOT SEND MESSAGES IN THIS CHANNEL",
-                description=(
-                    "This channel is used to catch spam bots. Any messages sent here "
-                    "will result in a softban."
-                ),
-                color=discord.Color.red(),
-            )
-            embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/487399523392684043.png")
             try:
-                message = await channel.send(embed=embed)
+                message = await channel.send(view=WarningLayout())
             except discord.HTTPException:
                 await ctx.send(
                     f"Couldn't send the warning message in {channel.mention}. "
