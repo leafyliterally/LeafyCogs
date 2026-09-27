@@ -8,7 +8,7 @@ class WarningLayout(discord.ui.LayoutView):
     container = discord.ui.Container(
         discord.ui.Section(
             discord.ui.TextDisplay(
-                "# DO NOT SEND MESSAGES IN THIS CHANNEL\n"
+                "## DO NOT SEND MESSAGES IN THIS CHANNEL\n"
                 "This channel is used to catch spam bots. Any messages sent here "
                 "will result in __**a softban**__."
             ),
